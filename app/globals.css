@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------- */
+/*  Design tokens                                                          */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  --background: #f7f7fb;
+  --surface: #ffffff;
+  --surface-muted: #f4f4f8;
+  --border: #e4e4ec;
+  --border-strong: #d3d3e0;
+  --foreground: #15161f;
+  --muted-foreground: #6b6d80;
+
+  --brand-50: #f0f1ff;
+  --brand-100: #e0e2fe;
+  --brand-200: #c6c9fd;
+  --brand-300: #a2a6fb;
+  --brand-400: #7b7ef7;
+  --brand-500: #5b5bef;
+  --brand-600: #4740e0;
+  --brand-700: #3a33c0;
+  --brand-800: #302c9b;
+  --brand-900: #29277c;
+
+  --accent-500: #14b8a6;
+  --accent-600: #0d9488;
+
+  --success-500: #16a34a;
+  --success-100: #dcfce7;
+  --warning-500: #d97706;
+  --warning-100: #fef3c7;
+  --danger-500: #dc2626;
+  --danger-100: #fee2e2;
+  --info-500: #2563eb;
+  --info-100: #dbeafe;
+
+  --shadow-color: 234 30% 20%;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0c14;
+    --surface: #14151f;
+    --surface-muted: #191a26;
+    --border: #262838;
+    --border-strong: #33354a;
+    --foreground: #f1f1f7;
+    --muted-foreground: #9698ad;
+
+    --brand-50: #1a1a33;
+    --brand-100: #22224a;
+    --brand-200: #2e2e63;
+    --brand-300: #40409c;
+    --brand-400: #5c5cd6;
+    --brand-500: #7677f4;
+    --brand-600: #8d8ef7;
+    --brand-700: #a6a7fa;
+    --brand-800: #c2c3fc;
+    --brand-900: #e0e1fe;
+
+    --success-100: #103a22;
+    --warning-100: #3a2a0a;
+    --danger-100: #3a1414;
+    --info-100: #102a4a;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+
+  --color-success-500: var(--success-500);
+  --color-success-100: var(--success-100);
+  --color-warning-500: var(--warning-500);
+  --color-warning-100: var(--warning-100);
+  --color-danger-500: var(--danger-500);
+  --color-danger-100: var(--danger-100);
+  --color-info-500: var(--info-500);
+  --color-info-100: var(--info-100);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+/* ---------------------------------------------------------------------- */
+/*  Base styles                                                            */
+/* ---------------------------------------------------------------------- */
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--brand-200);
+  color: var(--brand-900);
+}
+
+/* Consistent, visible keyboard focus ring across every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth, restrained transitions for interactive surfaces. */
+button,
+a,
+input,
+textarea,
+select {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease,
+    opacity 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scrollable horizontal tab strips (mobile) without a visible scrollbar. */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 220ms ease both;
+}
+
+@keyframes flip-in {
+  from {
+    opacity: 0;
+    transform: rotateX(8deg) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+.animate-flip-in {
+  animation: flip-in 260ms ease both;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(91, 91, 239, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(91, 91, 239, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
