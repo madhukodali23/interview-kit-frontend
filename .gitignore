@@ -28,9 +28,12 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (never commit real values; the .example file is a template)
+# env files (never commit real values; these two are non-secret exceptions:
+# .example is a template, .production ships the public backend URL so
+# Vercel builds don't depend on a dashboard-configured env var)
 .env*
 !.env.example
+!.env.production
 
 # vercel
 .vercel
